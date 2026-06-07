@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>羽毛球场地预约助手</title>
+    <link rel="stylesheet" href="./styles.css?v=20260606-future-active" />
+  </head>
+  <body>
+    <main class="shell">
+      <section class="status-panel">
+        <div>
+          <p class="eyebrow">古美文体生活馆三楼球类馆</p>
+          <h1>羽毛球场地预约助手</h1>
+          <p class="subtle">目标日前一周同星期 24:00 放号，也就是目标日期前 6 天的 00:00。</p>
+        </div>
+        <div class="clock-card">
+          <span>当前时间</span>
+          <strong id="nowText">--:--:--</strong>
+          <small id="dateText">----</small>
+        </div>
+      </section>
+
+      <section class="grid">
+        <form class="panel booking-form" id="taskForm">
+          <div class="panel-heading">
+            <h2>创建预约任务</h2>
+            <span class="pill">全天可选</span>
+          </div>
+
+          <label>
+            <span>预约日期</span>
+            <input id="bookingDate" type="date" required />
+          </label>
+          <div class="date-strip" id="dateStrip" aria-label="日期可预约状态"></div>
+
+          <div class="field-row">
+            <label>
+              <span>开始时间</span>
+              <select id="startTime"></select>
+            </label>
+            <label>
+              <span>结束时间</span>
+              <select id="endTime"></select>
+            </label>
+          </div>
+
+          <fieldset>
+            <legend>场地偏好</legend>
+            <div class="court-grid" id="courtGrid"></div>
+          </fieldset>
+
+          <label>
+            <span>预约策略</span>
+            <select id="strategy">
+              <option value="same-first">必须连续两小时，优先同一片场地</option>
+              <option value="mixed-ok">必须连续两小时，可接受两个场地</option>
+            </select>
+          </label>
+
+          <div class="rule-note">
+            已放号日期会立即预约；未放号日期会等到放号时间，00:00 后持续刷新检测，出现可预约格子后立即选择连续两小时并提交订单。
+          </div>
+
+          <label>
+            <span>刷新间隔</span>
+            <select id="retryInterval">
+              <option value="500">0.5 秒，高频抢场</option>
+              <option value="800">0.8 秒，均衡</option>
+              <option value="1200">1.2 秒，稳妥</option>
+            </select>
+          </label>
+
+          <label>
+            <span>最大重试时长</span>
+            <select id="retryDuration">
+              <option value="180">3 分钟，推荐</option>
+              <option value="300">5 分钟</option>
+              <option value="600">10 分钟</option>
+            </select>
+          </label>
+
+          <label>
+            <span>备注</span>
+            <input id="note" type="text" placeholder="例如：优先靠近 3 号场地" />
+          </label>
+
+          <button type="button" class="sound-btn" id="enableSound">开启声音提醒</button>
+
+          <div class="open-time">
+            <span>预计放号时间</span>
+            <strong id="openTimePreview">请选择日期</strong>
+          </div>
+
+          <button type="submit" class="primary-btn">添加任务</button>
+        </form>
+
+        <section class="panel">
+          <div class="panel-heading">
+            <h2>抢场队列</h2>
+            <button class="ghost-btn" id="clearDone" type="button">清理完成</button>
+          </div>
+          <div class="task-list" id="taskList"></div>
+        </section>
+      </section>
+
+      <section class="panel runbook-panel">
+        <div class="panel-heading">
+          <h2>24 点执行要求</h2>
+          <span class="pill">第一时间下单</span>
+        </div>
+        <div class="runbook-grid">
+          <div>
+            <strong>23:55 前</strong>
+            <span>微信已登录，小程序停在场地预定入口附近，网络稳定。</span>
+          </div>
+          <div>
+            <strong>23:59:30</strong>
+            <span>进入待命状态，确认目标日期、时间范围和场地偏好。</span>
+          </div>
+          <div>
+            <strong>00:00:00</strong>
+            <span>立即进入刷新抢场循环，发现放号后选择连续两小时，提交订单，支付前由你确认。</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="panel log-panel">
+        <div class="panel-heading">
+          <h2>执行日志</h2>
+          <button class="ghost-btn" id="clearLog" type="button">清空日志</button>
+        </div>
+        <ol id="logList" class="log-list"></ol>
+      </section>
+    </main>
+
+    <script src="./app.js?v=20260606-future-active"></script>
+  </body>
+</html>

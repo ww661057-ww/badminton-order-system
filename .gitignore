@@ -1,0 +1,40 @@
+# OS/editor metadata
+.DS_Store
+Thumbs.db
+desktop.ini
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Runtime logs and temporary files
+*.log
+*.tmp
+*.temp
+tmp/
+temp/
+
+# Frontend/package-manager artifacts
+node_modules/
+dist/
+build/
+.parcel-cache/
+.vite/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Local env/config secrets
+.env
+.env.*
+!.env.example
+
+# Automation generated screenshots/previews
+automation/device-screen.png
+automation/pc-wechat-window.png
+automation/pc-wechat-live.png
+automation/pc-wechat-calibration-preview.png
+
+# Local reference screenshots/photos
+微信图片_*.jpg
